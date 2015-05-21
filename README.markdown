@@ -537,6 +537,8 @@ If Puppet is managing the iptables or iptables-persistent packages, and the prov
 
 * `gid`: GID or Group owner matching rule. Accepts a string argument only, as iptables does not accept multiple gid in a single statement. Requires the `owner` feature.
 
+* `goto`: The value for the iptables `--goto` parameter. Requires the `iptables` feature.
+
 * `hop_limit`: Hop limiting value for matched packets. Values must match '/^\d+$/'. Requires the `hop_limiting` feature.
 
 * `icmp`: When matching ICMP packets, this indicates the type of ICMP packet to match. A value of 'any' is not supported. To match any type of ICMP packet, the parameter should be omitted or undefined. Requires the `icmp_match` feature.

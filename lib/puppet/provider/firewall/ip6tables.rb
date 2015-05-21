@@ -78,6 +78,7 @@ Puppet::Type.type(:firewall).provide :ip6tables, :parent => :iptables, :source =
     :dst_type           => "--dst-type",
     :gateway            => "--gateway",
     :gid                => "--gid-owner",
+    :goto               => "-g",
     :hop_limit          => "-m hl --hl-eq",
     :icmp               => "-m icmp6 --icmpv6-type",
     :iniface            => "-i",
@@ -217,7 +218,7 @@ Puppet::Type.type(:firewall).provide :ip6tables, :parent => :iptables, :source =
     :tcp_flags, :uid, :gid, :mac_source, :sport, :dport, :port, :src_type,
     :dst_type, :socket, :pkttype, :name, :ipsec_dir, :ipsec_policy, :state,
     :ctstate, :icmp, :hop_limit, :limit, :burst, :recent, :rseconds, :reap,
-    :rhitcount, :rttl, :rname, :mask, :rsource, :rdest, :ipset, :jump, :clamp_mss_to_pmtu, :gateway, :todest,
+    :rhitcount, :rttl, :rname, :mask, :rsource, :rdest, :ipset, :jump, :goto, :clamp_mss_to_pmtu, :gateway, :todest,
     :tosource, :toports, :checksum_fill, :log_level, :log_prefix, :reject, :set_mss, :mss,
     :set_mark, :match_mark, :connlimit_above, :connlimit_mask, :connmark, :time_start, :time_stop, :month_days, :week_days, :date_start, :date_stop, :time_contiguous, :kernel_timezone]
 

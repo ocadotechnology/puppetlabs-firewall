@@ -450,7 +450,7 @@ Puppet::Type.newtype(:firewall) do
       unless value =~ /^[a-zA-Z0-9\-_]+$/
         raise ArgumentError, <<-EOS
           Jump destination must consist of alphanumeric characters, an
-          underscore or a yphen.
+          underscore or a hyphen.
         EOS
       end
 
@@ -458,6 +458,22 @@ Puppet::Type.newtype(:firewall) do
         raise ArgumentError, <<-EOS
           Jump destination should not be one of ACCEPT, REJECT or DROP. Use
           the action property instead.
+        EOS
+      end
+
+    end
+  end
+
+  newproperty(:goto, :required_features => :iptables) do
+    desc <<-EOS
+      The value for the iptables --goto parameter.  Any valid chain name is allowed.
+    EOS
+
+    validate do |value|
+      unless value =~ /^[a-zA-Z0-9\-_]+$/
+        raise ArgumentError, <<-EOS
+          Goto destination must consist of alphanumeric characters, an
+          underscore or a hyphen.
         EOS
       end
 
@@ -1396,8 +1412,8 @@ Puppet::Type.newtype(:firewall) do
       self.fail "burst makes no sense without limit"
     end
 
-    if value(:action) && value(:jump)
-      self.fail "Only one of the parameters 'action' and 'jump' can be set"
+    if value(:action) && value(:jump) || value(:action) && value(:goto) || value(:jump) && value(:goto)
+      self.fail "Only one of the parameters 'action', 'jump' and 'goto' can be set"
     end
 
     if value(:connlimit_mask) && ! value(:connlimit_above)

@@ -566,6 +566,16 @@ ARGS_TO_HASH = {
       :clamp_mss_to_pmtu => true,
     },
   },
+  'goto_mac_source' => {
+    :line => '-A felix-from-744efc95-c9 -s 10.64.72.149/32 -m mac --mac-source FA:16:3E:B3:10:3B -g felix-p-_3cdf5bf713569dd-o',
+    :table => 'filter',
+    :params => {
+      :chain => 'felix-from-744efc95-c9',
+      :source => '10.64.72.149/32',
+      :mac_source => 'FA:16:3E:B3:10:3B',
+      :goto => 'felix-p-_3cdf5bf713569dd-o',
+    },
+  },
 }
 
 # This hash is for testing converting a hash to an argument line.
